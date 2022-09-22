@@ -7,6 +7,8 @@ Course: APCSA
 
 Description: This program simulates a madlib game. Gets user input for some parts of speech and adds that to the
 madlib.
+Preconditions: User inputs parts of speech.
+Postconditions: Prints out completed Mad lib.
 *****************/
 import java.util.Scanner;
 
