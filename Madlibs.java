@@ -10,6 +10,7 @@ madlib.
 Preconditions: User inputs parts of speech.
 Postconditions: Prints out completed Mad lib.
 *****************/
+// imports Scanner class
 import java.util.Scanner;
 
 class Main {
@@ -36,10 +37,12 @@ class Main {
         String input = sc.nextLine();
 
         // Gets the madLib String variable and replaces the first instance of when "partOfSpeech" appears
-        // in the String, "madLib"
+        // in the String, "madLib", using .replaceFirst() method.
         madLib = madLib.replaceFirst(partOfSpeech, input);
     }
-    // Prints out the finished madlib
+
+    // Prints out the finished madlib and closes instance using .close().
+    sc.close();
     System.out.println(madLib);
   }
 }
