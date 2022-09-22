@@ -1,35 +1,43 @@
+/*
+1.2.10 Mad Libs
+
+Author: Brian Hoang, Jaden Tagulinao
+Date: Sept 22, 2022
+Course: APCSA
+
+Description: This program simulates a madlib game. Gets user input for some parts of speech and adds that to the
+madlib.
+*****************/
 import java.util.Scanner;
 
+class Main {
+  public static void main(String[] args) {
+    // List of different madlibs.
+    String[] madLibs = {"The <noun> crossed the <adjective> <noun>.", "The <noun> attacked the <adjective> <noun>.", "Paul Harris ate a(n) <adjective> <noun> with <noun>."};
 
-public class Madlibs {
+    // Chooses a random madlib from the madLibs list.
+    String madLib = madLibs[(int) (Math.random() * madLibs.length)];
 
+    // Creates a scanner object
+    Scanner sc = new Scanner(System.in);
 
-    // How the algorithm words is that it splits 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    // While loop which continuously run the code inside of the while loop until all instances of "<" is gone from
+    // the String, madLib
+    while (madLib.contains("<")) {
+        // Gets the first instance where you need to input a part of speech. It find the first instance of "<" and 
+        // find the first instance of ">" using .indexOf() and substrings everything inside the <> using .substring().
+        String partOfSpeech = madLib.substring(madLib.indexOf("<"), madLib.indexOf(">") + 1);
 
-        String[] madlibs = {"The ~NOUN~ swam across a ~ADJECTIVE~ ~NOUN~.", "Once upon a time in a ~ADJECTIVE~ land, a ~NOUN~ ~ADVERB~ grew."};
-        String madlib = madlibs[(int) (Math.random()*madlibs.length)];
+        // Prompts the user to input a certain part of speech and reads what the user inputs.  The substring here
+        // gets partOfSpeech and substrings everything inside the <>, excluding the <>.
+        System.out.println("Please input a(n) " + partOfSpeech.substring(1, partOfSpeech.length() - 1));
+        String input = sc.nextLine();
 
-        String finishedMadLib = "";
-        String[] result = madlib.split("~");
-
-        for (var i = 0; i < result.length; i++) {
-            if (i % 2 == 1) {
-                String partOfSpeech = result[i];
-                
-                System.out.println("Please input a(n) " + partOfSpeech);
-                String userInput = sc.nextLine();
-
-                finishedMadLib = finishedMadLib.concat(userInput);
-
-            } else {
-                finishedMadLib = finishedMadLib.concat(result[i]);
-            }
-        }
-
-        System.out.println(finishedMadLib);
+        // Gets the madLib String variable and replaces the first instance of when "partOfSpeech" appears
+        // in the String, "madLib"
+        madLib = madLib.replaceFirst(partOfSpeech, input);
     }
-
-
+    // Prints out the finished madlib
+    System.out.println(madLib);
+  }
 }
